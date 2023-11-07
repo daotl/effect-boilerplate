@@ -1,15 +1,9 @@
 {
-  "extends": [
-    "@tsconfig/strictest",
-    "@tsconfig/node20",
-    "@tsconfig/esm"
-  ],
+  "extends": ["@tsconfig/strictest", "@tsconfig/node20", "@tsconfig/esm"],
   "compilerOptions": {
     "tsPlusConfig": "./tsplus.config.json",
     "module": "NodeNext",
-    "lib": [
-      "esnext"
-    ],
+    "lib": ["esnext"],
     "target": "es2021",
     // inline source maps stay better in sync with the source, which should aid with watchers.
     //"sourceMap": true,
@@ -26,7 +20,7 @@
     // This is not desirable, as it's useful in generators.
     "noImplicitReturns": false,
     "noImplicitThis": true,
-    "outDir": "build/dist",
+    "outDir": "dist",
     "resolveJsonModule": true,
     "moduleResolution": "NodeNext",
     "downlevelIteration": true,
@@ -52,16 +46,12 @@
       {
         "name": "@effect/language-service/transformer",
         "trace": {
-          "exclude": [
-            "**/*.ts"
-          ]
+          "exclude": ["**/*.ts"]
         }
         //"debug": {}
       }
     ],
-    "types": [
-      "vitest/globals"
-    ]
+    "types": ["vitest/globals"]
   },
   "watchOptions": {
     // Use native file system events for files and directories
@@ -81,16 +71,7 @@
       "**/.logs",
       "**/.*"
     ],
-    "excludeFiles": [
-      "**/*.tmp",
-      "openapi.json",
-      "*.json"
-    ]
+    "excludeFiles": ["**/*.tmp", "openapi.json", "*.json"]
   },
-  "exclude": [
-    "**/node_modules",
-    "**/build",
-    "**/lib",
-    "**/dist"
-  ]
+  "exclude": ["**/node_modules", "**/build", "**/lib", "**/dist"]
 }

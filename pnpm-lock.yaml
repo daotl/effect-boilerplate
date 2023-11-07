@@ -5,6 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
+  '@effect/schema': 0.42.0
   '@types/node': ~20.8.3
   date-fns: 2.29.3
   effect: 2.0.0-next.47
@@ -780,7 +781,7 @@ packages:
   /@effect/match@0.39.0(effect@2.0.0-next.47):
     resolution: {integrity: sha512-XwW+8wpa/niPZz5qxMtwR5PuRKdvW6APHvQEq4Mw1uLij3ZpB34PROoMQlWn0xmFrO5ztax05DmZQkDRii1cSw==}
     peerDependencies:
-      effect: 2.0.0-next.47
+      effect: 2.0.0-next.46
     dependencies:
       effect: 2.0.0-next.47
     dev: false
@@ -798,7 +799,7 @@ packages:
   /@effect/typeclass@0.6.2(effect@2.0.0-next.47):
     resolution: {integrity: sha512-H9FklKKpzm8RjaIwHVruk+hHUK6HYW9aVRQ09YMCQMJBdxs/bPdJ6/hJvBVhPp1TmcwGLe0mI2+IQ3HSpIjgfg==}
     peerDependencies:
-      effect: 2.0.0-next.47
+      effect: ^2.0.0-next.39
     dependencies:
       effect: 2.0.0-next.47
     dev: false
@@ -1057,7 +1058,7 @@ packages:
     resolution: {integrity: sha512-ArMc8qawBESuvps1BR74y3s8Vn8AiDnbNe/Pu1Pxc3RwVPDxb34cui6PblAIRXEieYH2QQiwsVp+bNDfxA48Zg==}
     peerDependencies:
       '@effect/typeclass': ^0.6.2
-      effect: 2.0.0-next.47
+      effect: ^2.0.0-next.44
     dependencies:
       '@effect/typeclass': 0.6.2(effect@2.0.0-next.47)
       effect: 2.0.0-next.47
@@ -6131,7 +6132,7 @@ packages:
     peerDependencies:
       '@swc/core': '>=1.2.50'
       '@swc/wasm': '>=1.2.50'
-      '@types/node': ~20.8.3
+      '@types/node': '*'
       typescript: '>=2.7'
     peerDependenciesMeta:
       '@swc/core':
@@ -6583,7 +6584,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ~20.8.3
+      '@types/node': '>= 14'
       less: '*'
       lightningcss: ^1.21.0
       sass: '*'
