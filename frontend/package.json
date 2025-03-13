@@ -58,6 +58,7 @@
   "devDependencies": {
     "@effect-app-boilerplate/api": "workspace:*",
     "@mdi/js": "^7.4.47",
+    "@nuxt/eslint": "1.2.0",
     "@prettier/plugin-xml": "^3.4.1",
     "@types/cookie": "^1.0.0",
     "@types/http-proxy": "^1.17.16",

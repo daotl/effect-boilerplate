@@ -36,7 +36,7 @@
     "editor.codeActionsOnSave": ["source.addMissingImports"],
   },
   "[json]": {
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "biomejs.biome",
   },
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome",
