@@ -1,10 +1,8 @@
 {
   "Pipe Operator |": {
     "prefix": "+p",
-    "body": [
-      "[\"|>\"]($1)"
-    ],
-    "description": "Pipe Operator"
+    "body": ["[\"|>\"]($1)"],
+    "description": "Pipe Operator",
   },
   // "Flow Operator": {
   //   "prefix": "+f",
@@ -15,23 +13,17 @@
   // },
   "Compose Operator": {
     "prefix": "+c",
-    "body": [
-      "[\">>>\"]($1)"
-    ],
-    "description": "Compose Operator"
+    "body": ["[\">>>\"]($1)"],
+    "description": "Compose Operator",
   },
   "Gen Function $": {
     "prefix": "$gen",
-    "body": [
-      "function* () {$1}"
-    ],
-    "description": "Generator Function with _ input"
+    "body": ["function* () {$1}"],
+    "description": "Generator Function with _ input",
   },
   "Gen Yield $": {
     "prefix": "yyield",
-    "body": [
-      "yield* $1"
-    ],
-    "description": "Yield generator calling $()"
-  }
+    "body": ["yield* $1"],
+    "description": "Yield generator calling $()",
+  },
 }

@@ -1,5 +1,5 @@
-import { HelloWorldRsc } from "#resources"
+import { HelloWorldRsc } from '#resources'
 
-it("works", () => {
+it('works', () => {
   console.log(HelloWorldRsc)
 })

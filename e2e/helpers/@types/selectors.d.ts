@@ -1,1 +1,1 @@
-export type Selectors = "TODO"
+export type Selectors = 'TODO'

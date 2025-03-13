@@ -2,7 +2,7 @@
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
   "extends": ["@daotl/biome-config"],
   "files": {
-    "ignore": ["frontend/**"]
+    "ignore": ["frontend/**"],
   },
   "linter": {
     "rules": {
@@ -10,23 +10,23 @@
         "noExcessiveCognitiveComplexity": {
           "level": "error",
           "options": {
-            "maxAllowedComplexity": 20
-          }
-        }
+            "maxAllowedComplexity": 20,
+          },
+        },
       },
       "performance": {
         "noBarrelFile": "off",
-        "noReExportAll": "off"
+        "noReExportAll": "off",
       },
       "style": {
         "noNamespaceImport": "off",
         "useFilenamingConvention": "off",
-        "useNamingConvention": "off"
+        "useNamingConvention": "off",
       },
       "suspicious": {
         "noConsole": "off",
-      }
-    }
+      },
+    },
   },
   "overrides": [
     // Biome doesn’t support monorepos very well fow now due to some limitations in resolving nested configuration files
@@ -39,18 +39,18 @@
         "eslint.config.mjs",
         "eslint.*.config.js",
         "eslint.*.config.cjs",
-        "eslint.*.config.mjs"
+        "eslint.*.config.mjs",
       ],
       "linter": {
         "rules": {
           "correctness": {
-            "noUnusedImports": "off"
+            "noUnusedImports": "off",
           },
           "suspicious": {
-            "noExplicitAny": "off"
-          }
-        }
-      }
+            "noExplicitAny": "off",
+          },
+        },
+      },
     },
     // api
     {
@@ -58,34 +58,34 @@
       "linter": {
         "rules": {
           "suspicious": {
-            "noExplicitAny": "off"
-          }
-        }
-      }
+            "noExplicitAny": "off",
+          },
+        },
+      },
     },
     {
       "include": [
         "api/src/models/*.ts",
         "api/src/services/*.ts",
-        "api/src/resources/**/*.ts"
+        "api/src/resources/**/*.ts",
       ],
       "linter": {
         "rules": {
           "style": {
-            "noNamespace": "off"
-          }
-        }
-      }
+            "noNamespace": "off",
+          },
+        },
+      },
     },
     {
       "include": ["api/src/**/*.controllers.ts"],
       "linter": {
         "rules": {
           "style": {
-            "noDefaultExport": "off"
-          }
-        }
-      }
-    }
-  ]
+            "noDefaultExport": "off",
+          },
+        },
+      },
+    },
+  ],
 }

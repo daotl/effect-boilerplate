@@ -1,17 +1,15 @@
-import { Option } from "effect-app"
+import { Option } from 'effect-app'
 // import { UsersRsc } from "#resources"
-import { makeHeadersHashMap, makeRuntime } from "./shared.js"
+import { makeHeadersHashMap, makeRuntime } from './shared.js'
 
-const baseUrl = process.env["BASE_URL"] ?? "http://localhost:4000"
+const baseUrl = process.env['BASE_URL'] ?? 'http://localhost:4000'
 
 export function makeRuntimes(namespace: string) {
   const apiUrl = `${baseUrl}/api/api`
-  const { runtime: anonRuntime } = makeRuntime(
-    {
-      apiUrl,
-      headers: Option.some(makeHeadersHashMap(namespace))
-    }
-  )
+  const { runtime: anonRuntime } = makeRuntime({
+    apiUrl,
+    headers: Option.some(makeHeadersHashMap(namespace)),
+  })
 
   // const { runtime: managerRuntime } = makeRuntime(
   //   {
@@ -27,7 +25,7 @@ export function makeRuntimes(namespace: string) {
   // )
 
   return {
-    anonRuntime
+    anonRuntime,
     // managerRuntime,
     // userRuntime
   }

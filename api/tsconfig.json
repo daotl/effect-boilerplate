@@ -1,33 +1,21 @@
 {
   "compilerOptions": {
     "paths": {
-      "#core/*": [
-        "./src/core/*.js"
-      ],
-      "#resources": [
-        "./src/resources.js"
-      ],
-      "#models": [
-        "./src/models.js"
-      ],
-      "#resources/*": [
-        "./src/resources/*.js"
-      ],
-      "#models/*": [
-        "./src/models/*.js"
-      ],
-      "#api/*": [
-        "./src/*.js"
-      ]
+      "#core/*": ["./src/core/*.js"],
+      "#resources": ["./src/resources.js"],
+      "#models": ["./src/models.js"],
+      "#resources/*": ["./src/resources/*.js"],
+      "#models/*": ["./src/models/*.js"],
+      "#api/*": ["./src/*.js"],
     },
   },
   "extends": "../tsconfig.base.json",
   "references": [
     {
-      "path": "./tsconfig.src.json"
+      "path": "./tsconfig.src.json",
     },
     {
-      "path": "./tsconfig.test.json"
-    }
+      "path": "./tsconfig.test.json",
+    },
   ],
 }

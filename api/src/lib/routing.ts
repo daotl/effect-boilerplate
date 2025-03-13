@@ -1,25 +1,50 @@
-import { BaseConfig } from "#api/config"
-import { AppLogger } from "#api/lib/logger"
-import { RequestCacheLayers } from "#api/resources/lib"
-import { makeMiddleware, makeRouter, RpcHeadersFromHttpHeaders } from "@effect-app/infra/api/routing"
-import { NotLoggedInError, UnauthorizedError } from "@effect-app/infra/errors"
-import type { RequestContext } from "@effect-app/infra/RequestContext"
-import { Rpc } from "@effect/rpc"
-import { Context, Effect, Exit, Layer, Option, type Request, type S } from "effect-app"
-import type { GetEffectContext, RPCContextMap } from "effect-app/client"
-import type { HttpHeaders, HttpServerRequest } from "effect-app/http"
-import type * as EffectRequest from "effect/Request"
-import { makeUserProfileFromAuthorizationHeader, makeUserProfileFromUserHeader, UserProfile } from "../services/UserProfile.js"
-import { basicRuntime } from "./basicRuntime.js"
+import type { RequestContext } from '@effect-app/infra/RequestContext'
+import {
+  RpcHeadersFromHttpHeaders,
+  makeMiddleware,
+  makeRouter,
+} from '@effect-app/infra/api/routing'
+import { NotLoggedInError, UnauthorizedError } from '@effect-app/infra/errors'
+import { Rpc } from '@effect/rpc'
+import {
+  Context,
+  Effect,
+  Exit,
+  Layer,
+  Option,
+  type Request,
+  type S,
+} from 'effect-app'
+import type { GetEffectContext, RPCContextMap } from 'effect-app/client'
+import type { HttpHeaders, HttpServerRequest } from 'effect-app/http'
+import type * as EffectRequest from 'effect/Request'
+import { BaseConfig } from '#api/config'
+import { AppLogger } from '#api/lib/logger'
+import { RequestCacheLayers } from '#api/resources/lib'
+import {
+  UserProfile,
+  makeUserProfileFromAuthorizationHeader,
+  makeUserProfileFromUserHeader,
+} from '../services/UserProfile.js'
+import { basicRuntime } from './basicRuntime.js'
 
 export interface CTX {
   context: RequestContext
 }
 
 export type CTXMap = {
-  allowAnonymous: RPCContextMap.Inverted<"userProfile", UserProfile, typeof NotLoggedInError>
+  allowAnonymous: RPCContextMap.Inverted<
+    'userProfile',
+    UserProfile,
+    typeof NotLoggedInError
+  >
   // TODO: not boolean but `string[]`
-  requireRoles: RPCContextMap.Custom<"", never, typeof UnauthorizedError, string[]>
+  requireRoles: RPCContextMap.Custom<
+    '',
+    never,
+    typeof UnauthorizedError,
+    string[]
+  >
 }
 
 // export const Auth0Config = Config.all({
@@ -30,36 +55,54 @@ export type CTXMap = {
 //   )
 // })
 
-const RequestLayers = Layer.mergeAll(RpcHeadersFromHttpHeaders, RequestCacheLayers)
+const RequestLayers = Layer.mergeAll(
+  RpcHeadersFromHttpHeaders,
+  RequestCacheLayers,
+)
 
 const middleware = makeMiddleware({
   contextMap: null as unknown as CTXMap,
   // helper to deal with nested generic lmitations
   context: null as any as HttpServerRequest.HttpServerRequest,
-  execute: Effect.gen(function*() {
+  execute: Effect.gen(function* () {
     const fakeLogin = true
     // const authConfig = yield* Auth0Config
     const makeUserProfile = fakeLogin
-      ? ((headers: HttpHeaders.Headers) =>
-        headers["x-user"] ? makeUserProfileFromUserHeader(headers["x-user"]) : Effect.succeed(undefined))
-      : ((headers: HttpHeaders.Headers) =>
-        headers["authorization"]
-          ? makeUserProfileFromAuthorizationHeader(headers["authorization"])
-          : Effect.succeed(undefined))
+      ? (headers: HttpHeaders.Headers) =>
+          headers['x-user']
+            ? makeUserProfileFromUserHeader(headers['x-user'])
+            : Effect.succeed(undefined)
+      : (headers: HttpHeaders.Headers) =>
+          headers['authorization']
+            ? makeUserProfileFromAuthorizationHeader(headers['authorization'])
+            : Effect.succeed(undefined)
 
-    return <T extends { config?: { [K in keyof CTXMap]?: any } }, Req extends S.TaggedRequest.All, R>(
+    return <
+      T extends { config?: { [K in keyof CTXMap]?: any } },
+      Req extends S.TaggedRequest.All,
+      R,
+    >(
       schema: T & S.Schema<Req, any, never>,
-      handler: (request: Req) => Effect.Effect<EffectRequest.Request.Success<Req>, EffectRequest.Request.Error<Req>, R>,
-      moduleName?: string
+      handler: (
+        request: Req,
+      ) => Effect.Effect<
+        EffectRequest.Request.Success<Req>,
+        EffectRequest.Request.Error<Req>,
+        R
+      >,
+      moduleName?: string,
     ) => {
       const ContextLayer = <Req extends { _tag: string }>(req: Req) =>
         Effect
           // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: upstream
-          .gen(function*() {
-            yield* Effect.annotateCurrentSpan("request.name", moduleName ? `${moduleName}.${req._tag}` : req._tag)
+          .gen(function* () {
+            yield* Effect.annotateCurrentSpan(
+              'request.name',
+              moduleName ? `${moduleName}.${req._tag}` : req._tag,
+            )
 
             const headers = yield* Rpc.currentHeaders
-            const config = "config" in schema ? schema.config : undefined
+            const config = 'config' in schema ? schema.config : undefined
             let ctx = Context.empty()
 
             // Check JWT
@@ -80,40 +123,50 @@ const middleware = makeMiddleware({
 
             const r = yield* Effect.exit(makeUserProfile(headers))
             if (!Exit.isSuccess(r)) {
-              yield* AppLogger.logWarning("Parsing userInfo failed").pipe(Effect.annotateLogs("r", r))
+              yield* AppLogger.logWarning('Parsing userInfo failed').pipe(
+                Effect.annotateLogs('r', r),
+              )
             }
-            const userProfile = Option.fromNullable(Exit.isSuccess(r) ? r.value : undefined)
+            const userProfile = Option.fromNullable(
+              Exit.isSuccess(r) ? r.value : undefined,
+            )
             if (Option.isSome(userProfile)) {
               ctx = ctx.pipe(Context.add(UserProfile, userProfile.value))
             } else if (!config?.allowAnonymous) {
-              return yield* new NotLoggedInError({ message: "no auth" })
+              return yield* new NotLoggedInError({ message: 'no auth' })
             }
 
             if (config?.requireRoles) {
               // TODO
               if (
-                !(userProfile.value
-                && config.requireRoles.every((role: any) => userProfile.value?.roles.includes(role)))
+                !(
+                  userProfile.value &&
+                  config.requireRoles.every((role: any) =>
+                    userProfile.value?.roles.includes(role),
+                  )
+                )
               ) {
                 return yield* new UnauthorizedError()
               }
             }
 
-            return ctx as Context.Context<GetEffectContext<CTXMap, T["config"]>>
+            return ctx as Context.Context<GetEffectContext<CTXMap, T['config']>>
           })
           .pipe(Layer.effectContext, Layer.provide(RequestLayers))
-      return (req: Req): Effect.Effect<
+      return (
+        req: Req,
+      ): Effect.Effect<
         Request.Request.Success<Req>,
         Request.Request.Error<Req>,
         | HttpServerRequest.HttpServerRequest
-        | Exclude<R, GetEffectContext<CTXMap, T["config"]>>
-      > =>
-        handler(req).pipe(
-          Effect.provide(ContextLayer(req))
-        ) as any
+        | Exclude<R, GetEffectContext<CTXMap, T['config']>>
+      > => handler(req).pipe(Effect.provide(ContextLayer(req))) as any
     }
-  })
+  }),
 })
 
 const baseConfig = basicRuntime.runSync(BaseConfig)
-export const { Router, matchAll, matchFor } = makeRouter(middleware, baseConfig.env !== "prod")
+export const { Router, matchAll, matchFor } = makeRouter(
+  middleware,
+  baseConfig.env !== 'prod',
+)
