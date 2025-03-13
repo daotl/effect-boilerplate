@@ -7,7 +7,7 @@ import { NodeContext } from "@effect/platform-node"
 import * as HttpClientNode from "@effect/platform-node/NodeHttpClient"
 import * as HttpNode from "@effect/platform-node/NodeHttpServer"
 import { Context, Effect, Layer, Redacted } from "effect-app"
-import { createServer } from "http"
+import { createServer } from "node:http"
 import { MergedConfig, SendgridConfig, StorageConfig } from "../config.js"
 
 export const RepoDefault = StorageConfig
@@ -37,7 +37,7 @@ export const HttpServerLive = Effect
   .all([MergedConfig, Effect.serviceOption(ApiPortTag)])
   .pipe(
     Effect.andThen(([cfg, portOverride]) => {
-      if (portOverride.value) cfg = { ...cfg, port: portOverride.value.port }
+      if (portOverride.value) { cfg = { ...cfg, port: portOverride.value.port } }
 
       return HttpNode.layer(() => {
         const s = createServer()

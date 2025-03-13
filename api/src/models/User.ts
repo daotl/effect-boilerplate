@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import { Context, Effect, Equivalence, pipe, S, type Schema } from "effect-app"
 import { fakerArb } from "effect-app/faker"
 import { UserProfileId } from "effect-app/ids"
@@ -20,7 +19,7 @@ export const DisplayName = FirstName
 export type DisplayName = Schema.Type<typeof DisplayName>
 
 S.Array(S.NonEmptyString255).pipe(
-  S.annotations({ [AST.ArbitraryAnnotationId]: (): A.LazyArbitrary<Array<string>> => (fc) => fc.tuple() })
+  S.annotations({ [AST.ArbitraryAnnotationId]: (): A.LazyArbitrary<string[]> => (fc) => fc.tuple() })
 )
 
 export const LastName = S
@@ -73,7 +72,7 @@ export class User extends S.ExtendedClass<User, User.Encoded>()({
   passwordHash: S.NonEmptyString255
 }) {
   get displayName() {
-    return S.NonEmptyString2k(this.name.firstName + " " + this.name.lastName)
+    return S.NonEmptyString2k(`${this.name.firstName} ${this.name.lastName}`)
   }
   static readonly resolver = UserFromIdResolver
 }

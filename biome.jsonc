@@ -1,0 +1,91 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "extends": ["@daotl/biome-config"],
+  "files": {
+    "ignore": ["frontend/**"]
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noExcessiveCognitiveComplexity": {
+          "level": "error",
+          "options": {
+            "maxAllowedComplexity": 20
+          }
+        }
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
+      },
+      "style": {
+        "noNamespaceImport": "off",
+        "useFilenamingConvention": "off",
+        "useNamingConvention": "off"
+      },
+      "suspicious": {
+        "noConsole": "off",
+      }
+    }
+  },
+  "overrides": [
+    // Biome doesn’t support monorepos very well fow now due to some limitations in resolving nested configuration files
+    // So we define overrides for packages here
+    // See: https://biomejs.dev/guides/big-projects/#monorepos
+    {
+      "include": [
+        "eslint.config.js",
+        "eslint.config.cjs",
+        "eslint.config.mjs",
+        "eslint.*.config.js",
+        "eslint.*.config.cjs",
+        "eslint.*.config.mjs"
+      ],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUnusedImports": "off"
+          },
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    // api
+    {
+      "include": ["api/src/lib/**/*.ts"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noExplicitAny": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": [
+        "api/src/models/*.ts",
+        "api/src/services/*.ts",
+        "api/src/resources/**/*.ts"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noNamespace": "off"
+          }
+        }
+      }
+    },
+    {
+      "include": ["api/src/**/*.controllers.ts"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ]
+}

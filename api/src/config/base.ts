@@ -7,7 +7,7 @@ const { error } = dotenv.config({ path: envFile })
 if (error) {
   console.log("did not load .env.local")
 } else {
-  console.log("loading env from: " + envFile)
+  console.log(`loading env from: ${envFile}`)
 }
 
 const FROM = {
@@ -48,7 +48,7 @@ export const BaseConfig = C.all({
   //  log: C.string("LOG").
 })
 type ConfigA<Cfg> = Cfg extends C.Config<infer A> ? A : never
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+
 export interface BaseConfig extends ConfigA<typeof BaseConfig> {}
 
 export const SB_PREFIX = "Endpoint=sb://"

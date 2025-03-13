@@ -1,7 +1,6 @@
 /// <reference types="vitest" />
 
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
 import AutoImport from "unplugin-auto-import/vite"
 import { defineConfig } from "vite"
 import type { UserConfig } from "vite"
@@ -9,7 +8,7 @@ import makeConfig from "./vite.config.base"
 
 const pj = require("./package.json")
 
-const basePj = pj.name.replace("/root", "")
+const _basePj = pj.name.replace("/root", "")
 
 export default function defineTestConfig(
   dirName?: string,
@@ -22,9 +21,7 @@ export default function defineTestConfig(
 ) {
   let {
     useDist = process.env.TEST_USE_DIST === "true",
-    // eslint-disable-next-line prefer-const
     useFullDist = process.env.TEST_USE_FULL_DIST === "true",
-    // eslint-disable-next-line prefer-const
     useTransform = false
   } = options
   if (useFullDist) {
@@ -64,10 +61,9 @@ export default function defineTestConfig(
     ]
   })
 
-  const d = dirName ? dirName + "/" : ""
+  const d = dirName ? `${dirName}/` : ""
   const cfg = {
     ...b,
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     plugins: [
       ...b.plugins ?? [],
       ...useFullDist
@@ -76,9 +72,9 @@ export default function defineTestConfig(
           ...useTransform
             ? [
               require("@effect-app/compiler/vitePlugin2").effectPlugin({
-                tsconfig: fs.existsSync(d + "tsconfig.test.local.json")
-                  ? d + "tsconfig.test.local.json"
-                  : d + "tsconfig.test.json"
+                tsconfig: fs.existsSync(`${d}tsconfig.test.local.json`)
+                  ? `${d}tsconfig.test.local.json`
+                  : `${d}tsconfig.test.json`
               })
             ]
             : [],

@@ -1,4 +1,4 @@
-import { augmentedConfig } from "../eslint.base.config.mjs"
+import { augmentedConfig } from "../eslint.codegen.config.mjs"
 
 import path from "node:path"
 import { fileURLToPath } from "node:url"

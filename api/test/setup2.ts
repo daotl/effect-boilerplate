@@ -1,4 +1,3 @@
-/* eslint-disable no-var */
 import { api } from "#api/api"
 import { basicLayer, basicRuntime } from "#api/lib/basicRuntime"
 import { ApiPortTag } from "#api/lib/layers"
@@ -8,14 +7,14 @@ import { ApiClientFactory } from "effect-app/client"
 import type { Runtime } from "effect/Runtime"
 
 const POOL_ID = process.env["VITEST_POOL_ID"]
-const PORT = 40000 + parseInt(POOL_ID ?? "1")
+const PORT = 40000 + Number.parseInt(POOL_ID ?? "1")
 
 const ApiLive = api
   .pipe(Layer.provide(Layer.succeed(ApiPortTag, { port: PORT })))
 
 const ApiClientLive = Config
   .all({
-    url: Config.string("apiUrl").pipe(Config.withDefault("http://127.0.0.1:" + PORT)),
+    url: Config.string("apiUrl").pipe(Config.withDefault(`http://127.0.0.1:${PORT}`)),
     headers: Config
       .hashMap(Config.string(), "headers")
       .pipe(Config.option)
@@ -40,7 +39,7 @@ declare global {
 }
 
 beforeAll(async () => {
-  if (globalThis.runtime) return
+  if (globalThis.runtime) { return }
   console.log(`[${POOL_ID}] Creating runtime`)
 
   const rt = ManagedRuntime

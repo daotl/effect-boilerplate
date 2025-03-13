@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import fs from "fs"
-import path from "path"
+import fs from "node:fs"
+import path from "node:path"
 import type { UserConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
@@ -14,17 +14,17 @@ export default function makeConfig(
   useTransform = false
 ): UserConfig {
   const alias = (name: string) => ({
-    [basePj + "/" + name]: path.join(__dirname, `/${name}/` + (useDist || useTransform ? "dist" : "src"))
+    [`${basePj}/${name}`]: path.join(__dirname, `/${name}/${useDist || useTransform ? "dist" : "src"}`)
   })
   const projects = ["api"]
-  const d = dirName ? dirName + "/" : ""
+  const d = dirName ? `${dirName}/` : ""
   return {
     plugins: useDist
       ? []
       : useTransform
       ? [
         require("@effect-app/compiler/vitePlugin2").effectPlugin({
-          tsconfig: dirName ? d + "tsconfig.json" : undefined
+          tsconfig: dirName ? `${d}tsconfig.json` : undefined
         })
       ]
       : [tsconfigPaths({ projects: projects.map((_) => path.join(__dirname, `/${_}`)) })],
@@ -38,10 +38,10 @@ export default function makeConfig(
       ? {
         alias: {
           ...projects.reduce(
-            (acc, cur) => ({ ...acc, ...alias(cur) }),
+            (acc, cur) => (Object.assign(acc, alias(cur))),
             {}
           ),
-          [JSON.parse(fs.readFileSync(dirName + "/package.json", "utf-8")).name]: path.join(
+          [JSON.parse(fs.readFileSync(`${dirName}/package.json`, "utf-8")).name]: path.join(
             dirName,
             useDist ? "/dist" : "/src"
           ),

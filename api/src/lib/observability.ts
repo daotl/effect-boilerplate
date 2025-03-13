@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Metrics from "@effect/opentelemetry/Metrics"
 import * as Resource from "@effect/opentelemetry/Resource"
 import * as Tracer from "@effect/opentelemetry/Tracer"
@@ -14,7 +13,7 @@ import * as Sentry from "@sentry/node"
 import { SentryPropagator, SentrySampler, SentrySpanProcessor, setupEventContextTrace, wrapContextManagerClass } from "@sentry/opentelemetry"
 import { Context, Effect, Layer, Redacted } from "effect-app"
 import { dropUndefinedT } from "effect-app/utils"
-import fs from "fs"
+import fs from "node:fs"
 import tcpPortUsed from "tcp-port-used"
 import { BaseConfig } from "../config.js"
 import { basicRuntime } from "./basicRuntime.js"
@@ -40,9 +39,7 @@ const checkTelemetryExporterRunning = Effect.promise<boolean>(() => tcpPortUsed.
           "../.telemetry-exporter-running",
           isTelemetryExporterRunning.toString()
         )
-      } else {
-        if (fs.existsSync("../.telemetry-exporter-running")) fs.unlinkSync("../.telemetry-exporter-running")
-      }
+      } else if (fs.existsSync("../.telemetry-exporter-running")) { fs.unlinkSync("../.telemetry-exporter-running") }
     })
   ),
   Effect.cached,
@@ -113,7 +110,7 @@ const setupSentry = (options?: Sentry.NodeOptions) => {
     }),
     beforeSendTransaction(event) {
       const otelAttrs = (event.contexts?.["otel"]?.["attributes"] as any) ?? {}
-      const traceData = (event.contexts?.["trace"]?.["data"] as any) ?? {}
+      const traceData = (event.contexts?.trace?.data as any) ?? {}
       if (
         filteredEntries.some(([k, vs]) =>
           vs.some((v) =>
@@ -159,6 +156,7 @@ const ConfigLive = Effect
     const resource = yield* Resource.Resource
 
     if (isRemote) {
+      //biome-ignore lint/style/noNonNullAssertion: upstream
       const client = Sentry.getClient()!
       setupEventContextTrace(client)
 

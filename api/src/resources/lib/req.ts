@@ -8,7 +8,7 @@ type CTXMap = {
   // TODO: a base map for client, that the server extends
   allowAnonymous: RPCContextMap.Inverted<"userProfile", never, typeof NotLoggedInError>
   // TODO: not boolean but `string[]`
-  requireRoles: RPCContextMap.Custom<"", void, typeof UnauthorizedError, Array<string>>
+  requireRoles: RPCContextMap.Custom<"", void, typeof UnauthorizedError, string[]>
 }
 
 export type RequestConfig = {

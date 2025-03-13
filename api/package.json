@@ -15,9 +15,8 @@
     "watch": "pnpm build --watch",
     "watch2": "pnpm clean-dist && NODE_OPTIONS=--max-old-space-size=8192 tsc -w",
     "compile": "NODE_OPTIONS=--max-old-space-size=8192 tsc --noEmit",
-    "lint": "NODE_OPTIONS=--max-old-space-size=8192 ESLINT_TS=1 eslint src test",
-    "lint:watch": "ESLINT_TS=1 esw -w --changed --clear --ext ts,tsx src test",
-    "autofix": "pnpm lint --fix",
+    "codegen": "NODE_OPTIONS=--max-old-space-size=8192 ESLINT_TS=1 eslint --quiet --fix src test",
+    "codegen:watch": "ESLINT_TS=1 esw -w --quiet --fix --changed --clear --ext ts,tsx src test",
     "test": "vitest",
     "test:run": "pnpm run test run --passWithNoTests",
     "testsuite": "pnpm circular && pnpm run test:run && pnpm lint",
@@ -122,9 +121,8 @@
     "@azure/service-bus": "^7.9.5",
     "@azure/storage-blob": "^12.26.0",
     "@effect-app/infra": "2.45.1",
-    "effect-app": "^2.35.0",
-    "@effect/platform": "^0.79.1",
     "@effect/opentelemetry": "^0.44.10",
+    "@effect/platform": "^0.79.1",
     "@effect/platform-node": "0.75.1",
     "@effect/rpc": "^0.54.1",
     "@effect/rpc-http": "^0.52.1",
@@ -144,6 +142,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "effect": "^3.13.10",
+    "effect-app": "^2.35.0",
     "express": "^4.21.2",
     "express-compression": "^1.0.2",
     "express-oauth2-jwt-bearer": "^1.6.0",
@@ -168,7 +167,6 @@
     "@types/express": "^5.0.0",
     "@types/redis": "^2.8.32",
     "@types/swagger-ui-express": "^4.1.8",
-    "eslint-plugin-formatjs": "^5.2.14",
     "typescript": "~5.8.2"
   }
 }

@@ -76,9 +76,9 @@ export const OperationsClient = Effect.gen(function*() {
       .gen(function*() {
         let r = yield* opsClient.FindOperation.handler({ id })
         while (r) {
-          if (cb) cb(r)
+          if (cb) { cb(r) }
           const result = r.result
-          if (result) return isFailure(result) ? yield* Effect.fail(result) : yield* Effect.succeed(result)
+          if (result) { return isFailure(result) ? yield* Effect.fail(result) : yield* Effect.succeed(result) }
           yield* Effect.sleep(Duration.seconds(2))
           r = yield* opsClient.FindOperation.handler({ id })
         }

@@ -4,7 +4,7 @@ import { User, type UserId } from "#models/User"
 import { Model } from "@effect-app/infra"
 import { NotFoundError, NotLoggedInError } from "@effect-app/infra/errors"
 import { generate } from "@effect-app/infra/test"
-import { Array, Effect, Exit, Layer, Option, pipe, Request, RequestResolver, S } from "effect-app"
+import { Array as EArray, Effect, Exit, Layer, Option, pipe, Request, RequestResolver, S } from "effect-app"
 import { fakerArb } from "effect-app/faker"
 import { Email } from "effect-app/Schema"
 import fc from "fast-check"
@@ -25,7 +25,7 @@ export class UserRepo extends Effect.Service<UserRepo>()("UserRepo", {
     const makeInitial = yield* Effect.cached(Effect.sync(() => {
       const seed = cfg.fakeUsers === "seed" ? "seed" : cfg.fakeUsers === "sample" ? "sample" : ""
       const fakeUsers = pipe(
-        Array
+        EArray
           .range(1, 8)
           .map((_, i): User => {
             const g = generate(S.A.make(User)).value
@@ -40,7 +40,7 @@ export class UserRepo extends Effect.Service<UserRepo>()("UserRepo", {
               role: i === 0 || i === 1 ? "manager" : "user"
             })
           }),
-        Array.toNonEmptyArray,
+        EArray.toNonEmptyArray,
         Option
           .match({
             onNone: () => {
@@ -78,7 +78,7 @@ export class UserRepo extends Effect.Service<UserRepo>()("UserRepo", {
             Effect.forEach(requests, (r) =>
               Request.complete(
                 r,
-                Array
+                EArray
                   .findFirst(users, (_) => _.id === r.id ? Option.some(Exit.succeed(_)) : Option.none())
                   .pipe(Option.getOrElse(() => Exit.fail(new NotFoundError({ type: "User", id: r.id }))))
               ), { discard: true })

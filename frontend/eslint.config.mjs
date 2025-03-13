@@ -1,23 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
+import formatjs from "eslint-plugin-formatjs"
 import { vueConfig } from "../eslint.vue.config.mjs"
+import nuxt from "./.nuxt/eslint.config.mjs"
 
-import path from "node:path"
-import { fileURLToPath } from "node:url"
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-export default [
-  ...vueConfig(__dirname, false),
-  {
-    ignores: [".nuxt/**", ".output/**", ".storybook/**"],
-  },
-  {
+export default nuxt(
+  vueConfig({
+    rules: {
+      // 'unicorn/no-abusive-eslint-disable': 'off',
+    },
+  }, {
+    name: "vue",
+    files: ["*.vue", "**/*.vue"],
+    plugins: {
+      formatjs // this is for ICU messages, so I'd say we need it here
+    },
+  }, {
     files: ["pages/**/*.vue", "components/**/*.vue", "layouts/**/*.vue"],
     rules: {
       "vue/multi-word-component-names": "off",
     },
-  },
-]
+  })
+)

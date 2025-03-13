@@ -10,7 +10,7 @@ import { defineWorkspace, type UserWorkspaceConfig } from "vitest/config"
 // are resolved, we can create specialized workspace groups in separate workspace files to better control test groups
 // with different dependencies (e.g. playwright browser) in CI.
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// biome-ignore lint/correctness/noUnusedVariables: keep
 const project = (
   config: UserWorkspaceConfig["test"] & { name: `${string}|${string}` },
   root = config.root ?? path.join(__dirname, `packages/${config.name.split("|").at(0)}`)

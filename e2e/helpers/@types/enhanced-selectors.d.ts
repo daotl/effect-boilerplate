@@ -1,4 +1,4 @@
-import type { Selectors } from "./selectors"
+import type { Selectors } from './selectors.ts'
 
 // function untag<T>(a: T & UnionBrand) :T
 // const POTab = untag(null as Id<PurchaseOrderTabKey>)

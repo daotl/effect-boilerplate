@@ -36,7 +36,7 @@ const logLevel = configuredLogLevel
   : configuredEnv && configuredEnv === "prod"
   ? Level.Info
   : Level.Debug
-if (!logLevel) throw new Error(`Invalid LOG_LEVEL: ${configuredLogLevel}`)
+if (!logLevel) { throw new Error(`Invalid LOG_LEVEL: ${configuredLogLevel}`) }
 
 const devLog = Logger
   .withSpanAnnotations(Logger.logfmtLogger)
@@ -72,14 +72,13 @@ await basicRuntime.runtime()
 const reportMainError = <E>(cause: Cause.Cause<E>) =>
   Cause.isInterruptedOnly(cause) ? Effect.void : reportError("Main")(cause)
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const runMainPlatform: RunMain = dual((args) => Effect.isEffect(args[0]), (effect: Effect.Effect<any, any>, options?: {
   readonly disableErrorReporting?: boolean | undefined
   readonly disablePrettyLogger?: boolean | undefined
   readonly teardown?: Teardown | undefined
 }) => {
   const teardown = options?.teardown ?? defaultTeardown
-  const keepAlive = setInterval(() => {}, 2 ** 31 - 1)
+  const keepAlive = setInterval(() => {/**/}, 2 ** 31 - 1)
 
   const fiber = Effect.runFork(
     options?.disableErrorReporting === true
@@ -97,7 +96,7 @@ const runMainPlatform: RunMain = dual((args) => Effect.isEffect(args[0]), (effec
   fiber.addObserver((exit) => {
     clearInterval(keepAlive)
     teardown(exit, (code) => {
-      if (signaled) process.exit(code)
+      if (signaled) { process.exit(code) }
     })
   })
 
@@ -112,7 +111,7 @@ const runMainPlatform: RunMain = dual((args) => Effect.isEffect(args[0]), (effec
   process.once("SIGTERM", onSigint)
 
   if (import.meta.hot) {
-    import.meta.hot.accept(async () => {})
+    import.meta.hot.accept(async () => {/**/})
     import.meta.hot.dispose(async () => {
       await basicRuntime.runPromise(Fiber.interrupt(fiber))
     })

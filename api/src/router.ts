@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as MW from "#api/lib/middleware"
 import { Console, Effect, Layer } from "effect-app"
 import { HttpMiddleware, HttpRouter, HttpServer } from "effect-app/http"
@@ -27,6 +26,7 @@ const logServer = Effect
   .pipe(Layer.effectDiscard)
 
 export const makeHttpServer = <E, R, E3, R3>(
+  // biome-ignore lint/suspicious/noExplicitAny: upstream
   router: { layer: Layer<never, E, R>; Router: HttpRouter.HttpRouter.TagClass<any, any, E3, R3> }
 ) =>
   logServer.pipe(
@@ -46,5 +46,4 @@ export const makeHttpServer = <E, R, E3, R3>(
     ),
     Layer.provide(router.layer),
     Layer.provide(AllRoutes)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   )

@@ -15,9 +15,9 @@ export function locateTest_(page: LocatorAble, sel: TestSelector) {
     const [testId2, ...rest2] = testId.split(":")
     const testSelector = `[data-test='${testId2}']:${rest2.join(":")}`
     return page.locator(
-      rest.length ? testSelector + ` ${rest.join(" ")}` : testSelector
+      rest.length > 0? `${testSelector} ${rest.join(" ")}` : testSelector
     )
   }
   const testSelector = `[data-test='${testId}']`
-  return page.locator(rest.length ? testSelector + ` ${rest.join(" ")}` : testSelector)
+  return page.locator(rest.length > 0? `${testSelector} ${rest.join(" ")}` : testSelector)
 }

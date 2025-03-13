@@ -2,7 +2,7 @@ import { Effect } from "effect-app"
 import { HttpHeaders, HttpMiddleware, HttpServerRequest, HttpServerResponse } from "effect-app/http"
 // codegen:end
 
-import z from "zlib"
+import z from "node:zlib"
 
 export * from "@effect-app/infra/api/middlewares"
 
@@ -18,7 +18,7 @@ export const gzip = HttpMiddleware.make(
       if (
         body._tag !== "Uint8Array"
         || body.contentLength === 0
-      ) return r
+      ) { return r }
 
       const req = yield* HttpServerRequest.HttpServerRequest
       if (
@@ -27,7 +27,7 @@ export const gzip = HttpMiddleware.make(
           ?.split(",")
           .map((_) => _.trim())
           .includes("gzip")
-      ) return r
+      ) { return r }
 
       // TODO: a stream may be better, for realtime compress?
       const buffer = yield* Effect.async<Buffer>((cb) =>

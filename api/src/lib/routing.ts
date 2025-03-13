@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import { BaseConfig } from "#api/config"
 import { AppLogger } from "#api/lib/logger"
 import { RequestCacheLayers } from "#api/resources/lib"
@@ -22,7 +19,7 @@ export interface CTX {
 export type CTXMap = {
   allowAnonymous: RPCContextMap.Inverted<"userProfile", UserProfile, typeof NotLoggedInError>
   // TODO: not boolean but `string[]`
-  requireRoles: RPCContextMap.Custom<"", never, typeof UnauthorizedError, Array<string>>
+  requireRoles: RPCContextMap.Custom<"", never, typeof UnauthorizedError, string[]>
 }
 
 // export const Auth0Config = Config.all({
@@ -57,6 +54,7 @@ const middleware = makeMiddleware({
     ) => {
       const ContextLayer = <Req extends { _tag: string }>(req: Req) =>
         Effect
+          // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: upstream
           .gen(function*() {
             yield* Effect.annotateCurrentSpan("request.name", moduleName ? `${moduleName}.${req._tag}` : req._tag)
 
@@ -94,8 +92,8 @@ const middleware = makeMiddleware({
             if (config?.requireRoles) {
               // TODO
               if (
-                !userProfile.value
-                || !config.requireRoles.every((role: any) => userProfile.value!.roles.includes(role))
+                !(userProfile.value
+                && config.requireRoles.every((role: any) => userProfile.value?.roles.includes(role)))
               ) {
                 return yield* new UnauthorizedError()
               }
