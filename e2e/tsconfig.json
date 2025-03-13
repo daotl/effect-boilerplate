@@ -3,14 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "./test-out",
-    "lib": [
-      "es5",
-      "dom"
-    ],
+    "lib": ["es5", "dom"],
     "paths": {
-      "e2e/*": [
-        "./*"
-      ]
+      "e2e/*": ["./*"],
     },
     // helps performance
     "disableSourceOfProjectReferenceRedirect": true,
@@ -26,16 +21,11 @@
     //   }
     // ]
   },
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "./test-out"
-  ],
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", "./test-out"],
   "references": [
     {
-      "path": "../api"
-    }
-  ]
+      "path": "../api",
+    },
+  ],
 }

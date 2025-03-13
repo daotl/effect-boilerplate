@@ -8,4 +8,6 @@ import type { Selectors } from './selectors.ts'
 
 export type EnhancedSelectors = Selectors // TODO | custom ones
 
-export type TestSelector = EnhancedSelectors | `${EnhancedSelectors}${` ` | `:`}${string}`
+export type TestSelector =
+  | EnhancedSelectors
+  | `${EnhancedSelectors}${` ` | `:`}${string}`

@@ -22,7 +22,7 @@
     "clean": "pnpm all clean",
     "clean-dist": "pnpm all clean-dist",
     "lint": "NODE_OPTIONS=--max-old-space-size=8192 pnpm lint:biome && pnpm lint-frontend",
-    "lint:fix": "NODE_OPTIONS=--max-old-space-size=8192 pnpm lint:biome -- fix && pnpm lint-frontend --fix",
+    "lint:fix": "NODE_OPTIONS=--max-old-space-size=8192 pnpm lint:biome --fix && pnpm lint-frontend --fix",
     "lint:biome": "biome check .",
     "circular:dist": "pnpm all circular:dist",
     "start": "concurrently -k -p \"[{name}]\" -n \"API,Frontend\" -c \"cyan.bold,green.bold,blue.bold\" \"pnpm start:api\" \"pnpm start:frontend\"",

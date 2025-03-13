@@ -5,9 +5,7 @@
     "outDir": "./test/dist",
     "tsBuildInfoFile": "./test/dist/.tsbuildinfo",
   },
-  "include": [
-    "./test/**/*.ts"
-  ],
+  "include": ["./test/**/*.ts"],
   "exclude": [
     "./dist",
     "./test/dist",
@@ -19,11 +17,11 @@
     ".git",
     ".data",
     "**/.*",
-    "**/*.tmp"
+    "**/*.tmp",
   ],
   "references": [
     {
-      "path": "./tsconfig.src.json"
+      "path": "./tsconfig.src.json",
     },
-  ]
+  ],
 }

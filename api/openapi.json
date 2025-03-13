@@ -25,10 +25,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "title",
-                  "body"
-                ],
+                "required": ["title", "body"],
                 "type": "object"
               }
             }
@@ -69,9 +66,7 @@
                       "type": "array"
                     }
                   },
-                  "required": [
-                    "items"
-                  ],
+                  "required": ["items"],
                   "type": "object"
                 }
               }
@@ -186,12 +181,7 @@
                       "$ref": "#/components/schemas/User"
                     }
                   },
-                  "required": [
-                    "now",
-                    "context",
-                    "currentUser",
-                    "randomUser"
-                  ],
+                  "required": ["now", "context", "currentUser", "randomUser"],
                   "type": "object"
                 }
               }
@@ -224,18 +214,11 @@
                       "type": "string"
                     },
                     "role": {
-                      "enum": [
-                        "manager",
-                        "user"
-                      ],
+                      "enum": ["manager", "user"],
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "id",
-                    "displayName",
-                    "role"
-                  ],
+                  "required": ["id", "displayName", "role"],
                   "type": "object"
                 }
               }
@@ -313,12 +296,7 @@
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "title",
-          "body",
-          "createdAt"
-        ],
+        "required": ["id", "title", "body", "createdAt"],
         "type": "object"
       },
       "User": {
@@ -335,18 +313,11 @@
             "type": "string"
           },
           "role": {
-            "enum": [
-              "manager",
-              "user"
-            ],
+            "enum": ["manager", "user"],
             "type": "string"
           }
         },
-        "required": [
-          "id",
-          "displayName",
-          "role"
-        ],
+        "required": ["id", "displayName", "role"],
         "type": "object"
       },
       "OperationProgress": {
@@ -363,19 +334,14 @@
             "type": "number"
           }
         },
-        "required": [
-          "completed",
-          "total"
-        ],
+        "required": ["completed", "total"],
         "type": "object"
       },
       "Success": {
         "title": "Success",
         "properties": {
           "_tag": {
-            "enum": [
-              "Success"
-            ],
+            "enum": ["Success"],
             "type": "string"
           },
           "message": {
@@ -385,19 +351,14 @@
             "nullable": true
           }
         },
-        "required": [
-          "_tag",
-          "message"
-        ],
+        "required": ["_tag", "message"],
         "type": "object"
       },
       "Failure": {
         "title": "Failure",
         "properties": {
           "_tag": {
-            "enum": [
-              "Failure"
-            ],
+            "enum": ["Failure"],
             "type": "string"
           },
           "message": {
@@ -407,10 +368,7 @@
             "nullable": true
           }
         },
-        "required": [
-          "_tag",
-          "message"
-        ],
+        "required": ["_tag", "message"],
         "type": "object"
       },
       "Operation": {
@@ -447,11 +405,7 @@
             "nullable": true
           }
         },
-        "required": [
-          "id",
-          "createdAt",
-          "updatedAt"
-        ],
+        "required": ["id", "createdAt", "updatedAt"],
         "type": "object"
       }
     },

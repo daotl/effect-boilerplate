@@ -1,16 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
   "include": [],
-  "exclude": [
-    "**/node_modules",
-    "**/build",
-    "**/lib",
-    "**/dist",
-    "**/.*"
-  ],
+  "exclude": ["**/node_modules", "**/build", "**/lib", "**/dist", "**/.*"],
   "references": [
     {
-      "path": "api"
+      "path": "api",
     },
     // {
     //   "path": "frontend-vue"
@@ -18,5 +12,5 @@
     //     {
     //       "path": "frontend-react"
     //     },
-  ]
+  ],
 }
