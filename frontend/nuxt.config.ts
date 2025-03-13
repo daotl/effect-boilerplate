@@ -1,6 +1,6 @@
-import process from "process"
-import { fileURLToPath } from "url"
-import fs from "fs"
+import fs from "node:fs"
+import process from "node:process"
+import { fileURLToPath } from "node:url"
 
 import rootPj from "../package.json"
 
@@ -14,6 +14,10 @@ const b = a ? "../libs" : "../../../effect-app/libs"
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4,
+  },
+
   typescript: {
     tsConfig: { compilerOptions: { moduleResolution: "bundler" } },
   },
@@ -62,7 +66,7 @@ export default defineNuxtConfig({
     },
   },
 
-  modules: ["@vueuse/nuxt", "@hebilicious/vue-query-nuxt"],
+  modules: ["@vueuse/nuxt", "@hebilicious/vue-query-nuxt", "@nuxt/eslint"],
 
   // app doesn't need SSR, but also it causes problems with linking schema package.
   ssr: false,
@@ -102,4 +106,13 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: "2024-09-04",
+
+  eslint: {
+    config: {
+      standalone: false,
+      nuxt: {
+        sortConfigKeys: true,
+      },
+    },
+  },
 })
