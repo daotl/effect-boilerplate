@@ -199,7 +199,14 @@ const ConfigLive = Effect.gen(function* () {
   }
 
   props = {
-    instrumentations: [getNodeAutoInstrumentations()],
+    instrumentations: [
+      getNodeAutoInstrumentations({
+        '@opentelemetry/instrumentation-http': {
+          // effect http server already does this
+          disableIncomingRequestInstrumentation: true,
+        },
+      }),
+    ],
 
     resource,
 

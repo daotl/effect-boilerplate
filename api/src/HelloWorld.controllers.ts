@@ -6,6 +6,7 @@ import { UserRepo } from '#api/services'
 import { User } from '#models/User'
 import { HelloWorldRsc } from '#resources'
 import { GetHelloWorld } from '#resources/HelloWorld'
+import { Test } from './router.js'
 
 export default Router(HelloWorldRsc)({
   dependencies: [UserRepo.Default],
@@ -16,6 +17,8 @@ export default Router(HelloWorldRsc)({
       GetHelloWorld: ({ echo }) =>
         Effect.gen(function* () {
           const context = yield* getRequestContext
+          const test = yield* Test
+          console.log({ test })
           return yield* userRepo.tryGetCurrentUser.pipe(
             Effect.catchTags({
               NotLoggedInError: () => Effect.succeed(null),

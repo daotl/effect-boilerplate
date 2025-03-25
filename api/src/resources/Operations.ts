@@ -1,6 +1,6 @@
 import { Duration, Effect } from 'effect-app'
 import { Operation, OperationFailure, OperationId } from 'effect-app/Operations'
-import { NotFoundError } from 'effect-app/client'
+import { NotFoundError } from 'effect-app/client/errors'
 import { clientFor } from './lib.js'
 import * as S from './lib/schema.js'
 

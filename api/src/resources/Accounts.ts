@@ -1,4 +1,4 @@
-import { NotFoundError } from 'effect-app/client'
+import { NotFoundError } from 'effect-app/client/errors'
 import { User } from '#models/User'
 import { S } from './lib.js'
 

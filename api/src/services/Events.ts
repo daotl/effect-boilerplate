@@ -1,5 +1,5 @@
 import { storeId } from '@effect-app/infra/Store/Memory'
-import { Effect, FiberRef, PubSub, Stream } from 'effect-app'
+import { Effect, PubSub, Stream } from 'effect-app'
 import type { NonEmptyReadonlyArray } from 'effect/Array'
 import type { ClientEvents } from '#resources'
 
@@ -13,7 +13,6 @@ export class Events extends Effect.Service<Events>()('Events', {
     const svc = {
       publish: (...evts: NonEmptyReadonlyArray<ClientEvents>) =>
         storeId.pipe(
-          FiberRef.get,
           Effect.andThen(namespace =>
             q.offerAll(evts.map(evt => ({ evt, namespace }))),
           ),
