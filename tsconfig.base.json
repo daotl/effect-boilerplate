@@ -3,4 +3,7 @@
     "./node_modules/effect-app/tsconfig.base.json",
     "./tsconfig.plugins.json",
   ],
+  "compilerOptions": {
+    "target": "ES2022",
+  },
 }
