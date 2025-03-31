@@ -1,25 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import formatjs from "eslint-plugin-formatjs"
-import { vueConfig } from "../eslint.vue.config.mjs"
-import nuxt from "./.nuxt/eslint.config.mjs"
+import antfu from '@antfu/eslint-config'
+import withNuxt from "./.nuxt/eslint.config.mjs"
 
-export default nuxt(
-  vueConfig({
-    rules: {
-      // 'unicorn/no-abusive-eslint-disable': 'off',
-    },
-  }, {
-    name: "vue",
-    files: ["*.vue", "**/*.vue"],
-    plugins: {
-      formatjs // this is for ICU messages, so I'd say we need it here
-    },
-  }, {
-    files: ["pages/**/*.vue", "components/**/*.vue", "layouts/**/*.vue"],
-    rules: {
-      "vue/multi-word-component-names": "off",
-    },
-  })
+export default withNuxt(
+  antfu()
 )

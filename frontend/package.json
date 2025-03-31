@@ -63,6 +63,7 @@
     "@types/cookie": "^1.0.0",
     "@types/http-proxy": "^1.17.16",
     "@types/markdown-it": "^14.1.2",
+    "@unocss/eslint-plugin": "66.1.0-beta.8",
     "eslint-plugin-format": "^1.0.1",
     "eslint-plugin-formatjs": "^5.2.14",
     "nuxt": "~3.16.0",
