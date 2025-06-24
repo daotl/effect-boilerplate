@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { config } from '@daotl/eslint-config'
 import { Linter } from 'eslint'
 import { FlatConfigComposer } from 'eslint-flat-config-utils'
+import formatjs from 'eslint-plugin-formatjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -26,6 +27,9 @@ export function vueConfig(...userConfigs) {
           project: [`${__dirname}/tsconfig.eslint.json`],
           extraFileExtensions: ['.vue'],
         },
+      },
+      plugins: {
+        formatjs, // this is for ICU messages, so I'd say we need it here
       },
     },
     ...userConfigs,

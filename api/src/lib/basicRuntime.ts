@@ -7,14 +7,22 @@ import {
   type Teardown,
   defaultTeardown,
 } from '@effect/platform/Runtime'
+import * as Sentry from '@sentry/node'
 import { constantCase } from 'change-case'
-import { Cause, Effect, Fiber, Layer, ManagedRuntime } from 'effect-app'
+import {
+  Cause,
+  Console,
+  Effect,
+  Fiber,
+  Layer,
+  ManagedRuntime,
+} from 'effect-app'
 import { dual } from 'effect-app/Function'
 import * as ConfigProvider from 'effect/ConfigProvider'
 import * as Level from 'effect/LogLevel'
 import * as Logger from 'effect/Logger'
 import type * as Runtime from 'effect/Runtime'
-import { AppLogger } from '#api/lib/logger'
+import { AppLogger } from '#lib/logger'
 
 const envProviderConstantCase = ConfigProvider.mapInputPath(
   ConfigProvider.fromEnv({
@@ -150,6 +158,14 @@ export function runMain<A, E>(
       ),
       Effect.ensuring(basicRuntime.disposeEffect),
       Effect.provide(basicLayer),
+      Effect.ensuring(
+        Effect.andThen(
+          Console.log('Flushing Sentry'),
+          Effect.promise(() => Sentry.flush(15_000)).pipe(
+            Effect.flatMap(_ => Console.log('Sentry flushed', _)),
+          ),
+        ),
+      ),
     ),
     { disablePrettyLogger: true, disableErrorReporting: true },
   )

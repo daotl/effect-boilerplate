@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import formatjs from "eslint-plugin-formatjs"
 import { vueConfig } from "../eslint.vue.config.mjs"
 import nuxt from "./.nuxt/eslint.config.mjs"
 
@@ -13,9 +12,6 @@ export default nuxt(
   }, {
     name: "vue",
     files: ["*.vue", "**/*.vue"],
-    plugins: {
-      formatjs // this is for ICU messages, so I'd say we need it here
-    },
   }, {
     files: ["pages/**/*.vue", "components/**/*.vue", "layouts/**/*.vue"],
     rules: {

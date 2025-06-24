@@ -2,9 +2,9 @@ import * as HttpClientNode from '@effect/platform-node/NodeHttpClient'
 import { Config, Effect, Layer, ManagedRuntime } from 'effect-app'
 import { ApiClientFactory } from 'effect-app/client'
 import type { Runtime } from 'effect/Runtime'
-import { api } from '#api/api'
-import { basicLayer, basicRuntime } from '#api/lib/basicRuntime'
-import { ApiPortTag } from '#api/lib/layers'
+import { api } from '#api'
+import { basicLayer, basicRuntime } from '#lib/basicRuntime'
+import { ApiPortTag } from '#lib/layers'
 
 const POOL_ID = process.env['VITEST_POOL_ID']
 const PORT = 40000 + Number.parseInt(POOL_ID ?? '1')
