@@ -1,9 +1,14 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
-  "root": true,
-  "extends": ["@daotl/biome-config"],
+  "extends": [
+    "@daotl/biome-config"
+  ],
   "files": {
-    "includes": ["**", "!**/frontend/**", "!**/auto-imports.d.ts"],
+    "includes": [
+      "**",
+      "!**/dist/**",
+      "!**/auto-imports.d.ts"
+    ],
   },
   "linter": {
     "rules": {
@@ -58,7 +63,9 @@
     },
     // api
     {
-      "includes": ["**/api/src/lib/**/*.ts"],
+      "includes": [
+        "**/api/src/lib/**/*.ts"
+      ],
       "linter": {
         "rules": {
           "suspicious": {
@@ -82,7 +89,9 @@
       },
     },
     {
-      "includes": ["**/api/src/**/*.controllers.ts"],
+      "includes": [
+        "**/api/src/**/*.controllers.ts"
+      ],
       "linter": {
         "rules": {
           "style": {
