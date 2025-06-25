@@ -4,6 +4,7 @@ import path from 'node:path'
 import type { UserConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
+// biome-ignore lint/style/noCommonJs: ignore
 const pj = require('./package.json')
 
 const basePj = pj.name.replace('/root', '')
@@ -26,6 +27,7 @@ export default function makeConfig(
       ? []
       : useTransform
         ? [
+            // biome-ignore lint/style/noCommonJs: ignore
             require('@effect-app/compiler/vitePlugin2').effectPlugin({
               tsconfig: dirName ? `${d}tsconfig.json` : undefined,
             }),
@@ -47,6 +49,7 @@ export default function makeConfig(
       ? {
           alias: {
             ...projects.reduce(
+              // biome-ignore lint/performance/noAccumulatingSpread: ignore
               (acc, cur) => Object.assign(acc, alias(cur)),
               {},
             ),

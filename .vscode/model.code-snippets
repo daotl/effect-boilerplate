@@ -1,25 +1,25 @@
 {
   "ModelCodegen": {
     "prefix": "genmod",
-    "body": ["// codegen:start {preset: model}"],
+    "body": ["// codegen:start {preset: model}"]
   },
   "ResourceCodegen": {
     "prefix": "genrsc",
-    "body": ["// codegen:start {preset: meta, sourcePrefix: src/resources/}"],
+    "body": ["// codegen:start {preset: meta, sourcePrefix: src/resources/}"]
   },
   "ModelComplete": {
     "prefix": "moc",
     "body": [
       "export class $1 extends S.ExtendedClass<$1, $1.Encoded>()({",
       "$2",
-      "}) {}",
+      "}) {}"
     ],
-    "description": "Defines a Model signature",
+    "description": "Defines a Model signature"
   },
   "Model": {
     "prefix": "mo",
     "body": ["export class $1 extends S.Class<$1>()({$2}) {}", ""],
-    "description": "Defines a Model signature",
+    "description": "Defines a Model signature"
   },
   "UnionOpaque": {
     "prefix": "un",
@@ -31,8 +31,8 @@
       "export const $1: $1Schema = $1_",
       "export namespace $1 {",
       "  export type Encoded = Encoded<typeof $1__> & UnionBrand",
-      "}",
-    ],
+      "}"
+    ]
   },
   "Request": {
     "prefix": "req",
@@ -40,14 +40,14 @@
       "export class $1 extends S.Req<$1>()(\"$1\", {",
       "  $2",
       "}, { success: $3 }) {}",
-      "",
+      ""
     ],
-    "description": "Defines a Request signature",
+    "description": "Defines a Request signature"
   },
   "Response": {
     "prefix": "res",
     "body": ["export class Response extends S.Class<Response()({$1}) {}", ""],
-    "description": "Defines a Response signature",
+    "description": "Defines a Response signature"
   },
   "controller": {
     "prefix": "controller",
@@ -61,7 +61,7 @@
       "    return matchFor($1Rsc)({",
       "      $2: $3",
       "    })",
-      "  })",
-    ],
-  },
+      "  })"
+    ]
+  }
 }

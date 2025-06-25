@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
-import { initializeSync } from '@effect-app/vue/runtime'
 import { FetchHttpClient } from '@effect/platform'
+import { initializeSync } from '@effect-app/vue/runtime'
 import { HashMap, Layer } from 'effect'
 import { ApiClientFactory, type ApiConfig } from 'effect-app/client'
 import { typedKeysOf } from 'effect-app/utils'

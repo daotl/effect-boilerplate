@@ -3,50 +3,50 @@
   "typescript.preferences.includePackageJsonAutoImports": "on",
   "typescript.preferences.autoImportFileExcludePatterns": [
     "nuxt/dist",
-    ".nuxt",
+    ".nuxt"
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
   "eslint.workingDirectories": [
     {
-      "pattern": ".",
+      "pattern": "."
     },
     {
-      "pattern": "frontend",
+      "pattern": "frontend"
     },
     {
-      "pattern": "api",
+      "pattern": "api"
     },
     {
-      "pattern": "e2e",
-    },
+      "pattern": "e2e"
+    }
   ],
   "eslint.execArgv": ["--max-old-space-size=8192"],
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
   "[vue]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": ["source.addMissingImports"],
+    "editor.codeActionsOnSave": ["source.addMissingImports"]
   },
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": ["source.addMissingImports"],
+    "editor.codeActionsOnSave": ["source.addMissingImports"]
   },
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": ["source.addMissingImports"],
+    "editor.codeActionsOnSave": ["source.addMissingImports"]
   },
   "[json]": {
-    "editor.defaultFormatter": "biomejs.biome",
+    "editor.defaultFormatter": "biomejs.biome"
   },
   "[typescript]": {
     "editor.defaultFormatter": "biomejs.biome",
-    "editor.codeActionsOnSave": ["source.addMissingImports"],
+    "editor.codeActionsOnSave": ["source.addMissingImports"]
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
-    "editor.codeActionsOnSave": ["source.addMissingImports"],
+    "editor.codeActionsOnSave": ["source.addMissingImports"]
   },
   "csv-preview.separator": ";",
   "cSpell.words": ["codegen", "composables", "pipeable", "tsplus"],
-  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "githubPullRequests.ignoredPullRequestBranches": ["main"]
 }

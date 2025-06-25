@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@effect-app-boilerplate/api": "workspace:*",
+    "@effect-app/vue": "^2.42.0",
     "@effect/platform-node": "0.86.4",
     "effect-app": "^2.41.0",
     "@effect/platform": "^0.85.2",

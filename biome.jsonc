@@ -1,8 +1,9 @@
 {
   "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "root": true,
   "extends": ["@daotl/biome-config"],
   "files": {
-    "ignore": ["frontend/**"],
+    "includes": ["**", "!**/frontend/**", "!**/auto-imports.d.ts"],
   },
   "linter": {
     "rules": {
@@ -17,9 +18,12 @@
       "performance": {
         "noBarrelFile": "off",
         "noReExportAll": "off",
+        "noNamespaceImport": "off",
       },
       "style": {
-        "noNamespaceImport": "off",
+        "noNestedTernary": "off",
+        "noProcessEnv": "off",
+        "noExportedImports": "off",
         "useFilenamingConvention": "off",
         "useNamingConvention": "off",
       },
@@ -33,13 +37,13 @@
     // So we define overrides for packages here
     // See: https://biomejs.dev/guides/big-projects/#monorepos
     {
-      "include": [
-        "eslint.config.js",
-        "eslint.config.cjs",
-        "eslint.config.mjs",
-        "eslint.*.config.js",
-        "eslint.*.config.cjs",
-        "eslint.*.config.mjs",
+      "includes": [
+        "**/eslint.config.js",
+        "**/eslint.config.cjs",
+        "**/eslint.config.mjs",
+        "**/eslint.*.config.js",
+        "**/eslint.*.config.cjs",
+        "**/eslint.*.config.mjs",
       ],
       "linter": {
         "rules": {
@@ -54,7 +58,7 @@
     },
     // api
     {
-      "include": ["api/src/lib/**/*.ts"],
+      "includes": ["**/api/src/lib/**/*.ts"],
       "linter": {
         "rules": {
           "suspicious": {
@@ -64,10 +68,10 @@
       },
     },
     {
-      "include": [
-        "api/src/models/*.ts",
-        "api/src/services/*.ts",
-        "api/src/resources/**/*.ts",
+      "includes": [
+        "**/api/src/models/**/*.ts",
+        "**/api/src/services/**/*.ts",
+        "**/api/src/resources/**/*.ts",
       ],
       "linter": {
         "rules": {
@@ -78,7 +82,7 @@
       },
     },
     {
-      "include": ["api/src/**/*.controllers.ts"],
+      "includes": ["**/api/src/**/*.controllers.ts"],
       "linter": {
         "rules": {
           "style": {

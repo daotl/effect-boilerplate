@@ -1,12 +1,12 @@
 import z from 'node:zlib'
 import { HttpApp, HttpServerRequest } from '@effect/platform'
+import type { ReadonlyRecord } from 'effect/Record'
 import { Context, Effect } from 'effect-app'
 import {
   HttpHeaders,
   HttpMiddleware,
   HttpServerResponse,
 } from 'effect-app/http'
-import type { ReadonlyRecord } from 'effect/Record'
 
 export * from '@effect-app/infra/api/middlewares'
 
@@ -100,7 +100,7 @@ export const cors = (options?: {
 
       if (allowedOrigins.length === 1) {
         return {
-          // biome-ignore lint/style/noNonNullAssertion: <explanation>
+          // biome-ignore lint/style/noNonNullAssertion: upstream
           'access-control-allow-origin': allowedOrigins[0]!,
           vary: 'Origin',
         }

@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename)
  * @returns {import("eslint").Linter.FlatConfig[]}
  */
 export function baseConfig(dirName, forceTS = false, _project = undefined) {
-  const enableTS = !!dirName && (forceTS || process.env['ESLINT_TS'])
+  const enableTS = !!dirName && (forceTS || process.env.ESLINT_TS)
   return [
     {
       files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],

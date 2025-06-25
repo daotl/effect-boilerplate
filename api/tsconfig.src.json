@@ -16,10 +16,10 @@
       "#models/*": ["./src/models/*.js"],
       "#config": ["./src/config.js"],
       "#lib/*": ["./src/lib/.*.js"],
-      "#services": ["./src/services.js"],
+      "#services": ["./src/services.js"]
     },
     "types": ["../types/modules", "vite/types/importMeta.d.ts"],
-    "outDir": "./dist",
+    "outDir": "./dist"
   },
   "include": ["./src/**/*.ts"],
   "exclude": [
@@ -33,6 +33,6 @@
     ".git",
     ".data",
     "**/.*",
-    "**/*.tmp",
-  ],
+    "**/*.tmp"
+  ]
 }

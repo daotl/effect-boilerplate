@@ -2,10 +2,11 @@
 
 import fs from 'node:fs'
 import AutoImport from 'unplugin-auto-import/vite'
-import { defineConfig } from 'vite'
 import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite'
 import makeConfig from './vite.config.base'
 
+// biome-ignore lint/style/noCommonJs: ignore
 const pj = require('./package.json')
 
 const _basePj = pj.name.replace('/root', '')
@@ -78,6 +79,7 @@ export default function defineTestConfig(
         : [
             ...(useTransform
               ? [
+                  // biome-ignore lint/style/noCommonJs: ignore
                   require('@effect-app/compiler/vitePlugin2').effectPlugin({
                     tsconfig: fs.existsSync(`${d}tsconfig.test.local.json`)
                       ? `${d}tsconfig.test.local.json`

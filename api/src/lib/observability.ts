@@ -2,6 +2,7 @@ import fs from 'node:fs'
 import * as Metrics from '@effect/opentelemetry/Metrics'
 import * as Resource from '@effect/opentelemetry/Resource'
 import * as Tracer from '@effect/opentelemetry/Tracer'
+// biome-ignore-start lint/correctness/noUndeclaredDependencies: ignore
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node'
 import { AsyncLocalStorageContextManager } from '@opentelemetry/context-async-hooks'
 import { OTLPMetricExporter } from '@opentelemetry/exporter-metrics-otlp-http'
@@ -17,6 +18,7 @@ import {
   NoopSpanProcessor,
 } from '@opentelemetry/sdk-trace-node'
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+// biome-ignore-end lint/correctness/noUndeclaredDependencies: ignore
 import * as Sentry from '@sentry/node'
 import {
   SentryPropagator,

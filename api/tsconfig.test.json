@@ -13,8 +13,8 @@
       "#models/*": ["./src/models/*.js"],
       "#config": ["./src/config.js"],
       "#lib/*": ["./src/lib/.*.js"],
-      "#services": ["./src/services.js"],
-    },
+      "#services": ["./src/services.js"]
+    }
   },
   "include": ["./test/**/*.ts"],
   "exclude": [
@@ -28,11 +28,11 @@
     ".git",
     ".data",
     "**/.*",
-    "**/*.tmp",
+    "**/*.tmp"
   ],
   "references": [
     {
-      "path": "./tsconfig.src.json",
-    },
-  ],
+      "path": "./tsconfig.src.json"
+    }
+  ]
 }

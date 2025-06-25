@@ -1,6 +1,6 @@
+import { RpcSerialization } from '@effect/rpc'
 import { Router } from '@effect-app/infra/api/routing'
 import { reportError } from '@effect-app/infra/errorReporter'
-import { RpcSerialization } from '@effect/rpc'
 import { FiberRef, flow } from 'effect'
 import { Console, Effect, Layer } from 'effect-app'
 import { HttpMiddleware, HttpRouter, HttpServer } from 'effect-app/http'

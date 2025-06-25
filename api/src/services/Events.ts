@@ -1,6 +1,6 @@
 import { storeId } from '@effect-app/infra/Store/Memory'
-import { Effect, PubSub, Stream } from 'effect-app'
 import type { NonEmptyReadonlyArray } from 'effect/Array'
+import { Effect, PubSub, Stream } from 'effect-app'
 import type { ClientEvents } from '#resources'
 
 export class Events extends Effect.Service<Events>()('Events', {

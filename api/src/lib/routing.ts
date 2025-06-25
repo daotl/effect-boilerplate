@@ -1,6 +1,7 @@
-import type { RequestContext } from '@effect-app/infra/RequestContext'
 import { makeMiddleware, makeRouter } from '@effect-app/infra/api/routing'
 import { NotLoggedInError, UnauthorizedError } from '@effect-app/infra/errors'
+import type { RequestContext } from '@effect-app/infra/RequestContext'
+import type * as EffectRequest from 'effect/Request'
 import {
   Context,
   Effect,
@@ -12,13 +13,12 @@ import {
 } from 'effect-app'
 import type { GetEffectContext, RPCContextMap } from 'effect-app/client/req'
 import { HttpHeaders, HttpServerRequest } from 'effect-app/http'
-import type * as EffectRequest from 'effect/Request'
 import { BaseConfig } from '#config'
 import { RequestCacheLayers } from '#resources/lib'
 import {
-  UserProfile,
   makeUserProfileFromAuthorizationHeader,
   makeUserProfileFromUserHeader,
+  UserProfile,
 } from '../services/UserProfile.js'
 import { basicRuntime } from './basicRuntime.js'
 import { AppLogger } from './logger.js'
@@ -133,6 +133,7 @@ const middleware = makeMiddleware({
 
             if (config?.requireRoles) {
               // TODO
+              // biome-ignore lint/style/useCollapsedIf: upstream
               if (
                 !(
                   userProfile.value &&

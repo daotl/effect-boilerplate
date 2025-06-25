@@ -1,9 +1,9 @@
 {
   "extends": [
     "./node_modules/effect-app/tsconfig.base.json",
-    "./tsconfig.plugins.json",
+    "./tsconfig.plugins.json"
   ],
   "compilerOptions": {
-    "target": "ES2022",
-  },
+    "target": "ES2022"
+  }
 }

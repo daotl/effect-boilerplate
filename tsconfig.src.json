@@ -4,13 +4,13 @@
   "exclude": ["**/node_modules", "**/build", "**/lib", "**/dist", "**/.*"],
   "references": [
     {
-      "path": "api/tsconfig.src.json",
-    },
+      "path": "api/tsconfig.src.json"
+    }
     // {
     //   "path": "frontend-vue"
     // },
     //     {
     //       "path": "frontend-react"
     //     },
-  ],
+  ]
 }

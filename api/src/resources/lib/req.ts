@@ -1,7 +1,7 @@
 import { NotLoggedInError, UnauthorizedError } from '@effect-app/infra/errors'
 import { Duration, Request as EffectRequest, Layer } from 'effect-app'
 import { ApiClientFactory } from 'effect-app/client/apiClientFactory'
-import { type RPCContextMap, makeRpcClient } from 'effect-app/client/req'
+import { makeRpcClient, type RPCContextMap } from 'effect-app/client/req'
 import type { Role } from '#models/User'
 
 type CTXMap = {

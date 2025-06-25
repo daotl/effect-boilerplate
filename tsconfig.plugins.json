@@ -11,16 +11,16 @@
           "effect-app",
           "^@effect-app/",
           "effect",
-          "^@effect/",
+          "^@effect/"
         ],
         "moveDownPatterns": ["^node_modules/"],
         "overrides": {
-          "effect-app": ["Array", "Option", "Either"],
-        },
+          "effect-app": ["Array", "Option", "Either"]
+        }
       },
       {
-        "name": "@effect/language-service",
-      },
-    ],
-  },
+        "name": "@effect/language-service"
+      }
+    ]
+  }
 }

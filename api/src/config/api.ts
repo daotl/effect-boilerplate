@@ -1,6 +1,6 @@
 import { Config, Effect } from 'effect-app'
-import { secretURL } from 'effect-app/Config/SecretURL'
 import * as SecretURL from 'effect-app/Config/SecretURL'
+import { secretURL } from 'effect-app/Config/SecretURL'
 import { basicRuntime } from '../lib/basicRuntime.js'
 import { BaseConfig } from './base.js'
 

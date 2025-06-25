@@ -1,14 +1,18 @@
-import { reportError } from '@effect-app/infra/errorReporter'
-import { logJson } from '@effect-app/infra/logger/jsonLogger'
 import { PlatformLogger } from '@effect/platform'
-import { NodeFileSystem } from '@effect/platform-node'
 import {
+  defaultTeardown,
   type RunMain,
   type Teardown,
-  defaultTeardown,
 } from '@effect/platform/Runtime'
+import { NodeFileSystem } from '@effect/platform-node'
+import { reportError } from '@effect-app/infra/errorReporter'
+import { logJson } from '@effect-app/infra/logger/jsonLogger'
 import * as Sentry from '@sentry/node'
 import { constantCase } from 'change-case'
+import * as ConfigProvider from 'effect/ConfigProvider'
+import * as Logger from 'effect/Logger'
+import * as Level from 'effect/LogLevel'
+import type * as Runtime from 'effect/Runtime'
 import {
   Cause,
   Console,
@@ -18,10 +22,6 @@ import {
   ManagedRuntime,
 } from 'effect-app'
 import { dual } from 'effect-app/Function'
-import * as ConfigProvider from 'effect/ConfigProvider'
-import * as Level from 'effect/LogLevel'
-import * as Logger from 'effect/Logger'
-import type * as Runtime from 'effect/Runtime'
 import { AppLogger } from '#lib/logger'
 
 const envProviderConstantCase = ConfigProvider.mapInputPath(

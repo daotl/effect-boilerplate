@@ -11,9 +11,9 @@
       "resolveSourceMapLocations": [
         "${workspaceFolder}/api/src/**/*",
         "${workspaceFolder}/api/dist/**/*",
-        "${workspaceFolder}/node_modules/**/*",
+        "${workspaceFolder}/node_modules/**/*"
       ],
-      "type": "node",
+      "type": "node"
     },
     // {
     //   "name": "UI debug",
@@ -35,7 +35,7 @@
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
       "type": "node",
-      "sourceMaps": true,
+      "sourceMaps": true
     },
     {
       "name": "UI Debug Attach",
@@ -45,7 +45,7 @@
       "skipFiles": ["<node_internals>/**"],
       "type": "node",
       "webRoot": "${workspaceFolder}/frontend",
-      "sourceMaps": true,
-    },
-  ],
+      "sourceMaps": true
+    }
+  ]
 }

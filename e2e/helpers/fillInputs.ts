@@ -1,4 +1,4 @@
-import { type Locator, type Page, expect } from '@playwright/test'
+import { expect, type Locator, type Page } from '@playwright/test'
 
 export function fillInputs(values: Record<string, string | boolean>) {
   return async (page: Page) => {

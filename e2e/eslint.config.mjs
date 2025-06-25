@@ -1,7 +1,6 @@
-import { augmentedConfig } from '../eslint.codegen.config.mjs'
-
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { augmentedConfig } from '../eslint.codegen.config.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

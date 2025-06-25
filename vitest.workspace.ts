@@ -1,5 +1,5 @@
 import * as path from 'node:path'
-import { type UserWorkspaceConfig, defineWorkspace } from 'vitest/config'
+import { defineWorkspace, type UserWorkspaceConfig } from 'vitest/config'
 
 // Remaining issues:
 // - Random failures (browser): https://github.com/vitest-dev/vitest/issues/4497

@@ -7,19 +7,19 @@ import {
   Exit,
   Layer,
   Option,
+  pipe,
   Request,
   RequestResolver,
   S,
-  pipe,
 } from 'effect-app'
-import { Email } from 'effect-app/Schema'
 import { fakerArb } from 'effect-app/faker'
+import { Email } from 'effect-app/Schema'
 import fc from 'fast-check'
 import { RepoConfig } from '#config'
 import { RepoDefault } from '#lib/layers'
 import { User, type UserId } from '#models/User'
-import { UserProfile } from '../UserProfile.js'
 import { Q } from '../lib.js'
+import { UserProfile } from '../UserProfile.js'
 
 export interface UserPersistenceModel extends User.Encoded {
   _etag: string | undefined

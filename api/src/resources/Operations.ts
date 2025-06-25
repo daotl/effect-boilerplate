@@ -1,8 +1,8 @@
 import { Duration, Effect } from 'effect-app'
-import { Operation, OperationFailure, OperationId } from 'effect-app/Operations'
 import { NotFoundError } from 'effect-app/client/errors'
-import { clientFor } from './lib.js'
+import { Operation, OperationFailure, OperationId } from 'effect-app/Operations'
 import * as S from './lib/schema.js'
+import { clientFor } from './lib.js'
 
 export class FindOperation extends S.Req<FindOperation>()(
   'FindOperation',

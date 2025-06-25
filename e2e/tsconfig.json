@@ -5,10 +5,10 @@
     "outDir": "./test-out",
     "lib": ["es5", "dom"],
     "paths": {
-      "e2e/*": ["./*"],
+      "e2e/*": ["./*"]
     },
     // helps performance
-    "disableSourceOfProjectReferenceRedirect": true,
+    "disableSourceOfProjectReferenceRedirect": true
     // "transformers": [
     //   // Transform paths in output .js files
     //   {
@@ -25,7 +25,7 @@
   "exclude": ["node_modules", "./test-out"],
   "references": [
     {
-      "path": "../api",
-    },
-  ],
+      "path": "../api"
+    }
+  ]
 }

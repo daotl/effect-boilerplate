@@ -1,6 +1,6 @@
 {
   "FormattedMessage": {
     "prefix": "fom",
-    "body": ["<FormattedMessage defaultMessage=\"$1\" description=\"$2\" />"],
-  },
+    "body": ["<FormattedMessage defaultMessage=\"$1\" description=\"$2\" />"]
+  }
 }

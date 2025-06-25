@@ -1,8 +1,8 @@
-import { Context, Effect, Equivalence, S, type Schema, pipe } from 'effect-app'
-import { AST } from 'effect-app/Schema'
+import type * as A from 'effect/Arbitrary'
+import { Context, Effect, Equivalence, pipe, S, type Schema } from 'effect-app'
 import { fakerArb } from 'effect-app/faker'
 import { UserProfileId } from 'effect-app/ids'
-import type * as A from 'effect/Arbitrary'
+import { AST } from 'effect-app/Schema'
 
 export const FirstName = S.NonEmptyString255.pipe(
   S.annotations({
